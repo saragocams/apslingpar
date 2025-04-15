@@ -26,7 +26,7 @@ loop        ::= "ritual" numero "ciclos" bloco ;
 
 print        ::= "revela" (ser | numero | frase) ";" ;
 
-bloco         ::= "abre" { encantamento } "fecha" ;
+bloco         ::= "gato" { encantamento } "preto" ;
 
 energia       ::= ser numero ;
 
