@@ -20,11 +20,11 @@ encantamento  ::= invocacao | condicional | ritual | revela ;
 
 invocacao     ::= "invoca" ser "com" energia ";" ;
 
-condicional   ::= "se" energia "entao" bloco ;
+condicional   ::= "fruta" energia "envenenada" bloco ;
 
-ritual        ::= "ritual" numero "ciclos" bloco ;
+loop        ::= "ritual" numero "ciclos" bloco ;
 
-revela        ::= "revela" (ser | numero | frase) ";" ;
+print        ::= "revela" (ser | numero | frase) ";" ;
 
 bloco         ::= "abre" { encantamento } "fecha" ;
 
@@ -50,8 +50,8 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 | Comando     | Descrição                                                                 |
 |-------------|---------------------------------------------------------------------------|
 | `invoca`    | Invoca uma entidade mágica com uma certa quantidade de energia            |
-| `se`        | Executa um feitiço se uma condição energética for verdadeira              |
-| `ritual`    | Repetição mágica de encantamentos (laço)                                  |
+| `fruta`     | Envenena uma fruta se uma condição energética for verdadeira              |
+| `ritual`    | Repetição mágica de encantamentos (loop)                                  |
 | `revela`    | Exibe mensagens ou verdades mágicas                                        |
 | `abre`/`fecha` | Delimita um bloco mágico com múltiplos feitiços                        |
 
@@ -62,7 +62,7 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 ```plaintext
 invoca corvo_negro com sombra13;
 
-se maldicao5 entao abre
+fruta amaldiçoada envenenada abre
     revela "O reino cairá em sono eterno...";
     invoca espinhos_venenosos com treva77;
 fecha
