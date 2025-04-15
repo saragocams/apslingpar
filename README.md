@@ -6,7 +6,7 @@ Linguagem de encantamentos inspirada na personagem **Malévola** – a icônica 
 
 ## 🧚‍♀️ Sobre a Linguagem
 
-MalevoLang é uma linguagem fictícia e simbólica, baseada na gramática EBNF. Ela simula uma linguagem onde cada feitiço é construído com comandos como `invoca`, `ritual`, `se` e `revela`.  
+MalevoLang é uma linguagem fictícia e simbólica, baseada na gramática EBNF. Ela simula uma linguagem onde cada feitiço é construído com comandos como `invoca`, `ritual`, `fruta` e `revela`.  
 
 ---
 
@@ -53,7 +53,7 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 | `fruta`     | Envenena uma fruta se uma condição energética for verdadeira              |
 | `ritual`    | Repetição mágica de encantamentos (loop)                                  |
 | `revela`    | Exibe mensagens ou verdades mágicas                                        |
-| `abre`/`fecha` | Delimita um bloco mágico com múltiplos feitiços                        |
+| `gato`/`preto` | Delimita um bloco mágico com ajuda de um gato preto                        |
 
 ---
 
@@ -62,14 +62,14 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 ```plaintext
 invoca corvo_negro com sombra13;
 
-fruta amaldiçoada envenenada abre
+fruta amaldiçoada envenenada gato
     revela "O reino cairá em sono eterno...";
     invoca espinhos_venenosos com treva77;
-fecha
+preto
 
-ritual 3 ciclos abre
+ritual 3 ciclos gato
     revela "A magia cresce com cada batida de asa...";
     invoca fogo_verde com treva99;
-fecha
+preto
 ```
 ---
