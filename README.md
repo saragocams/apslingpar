@@ -60,16 +60,18 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 ## Exemplo
 
 ```plaintext
-invoca corvo_negro com sombra13;
+invoca corvo_negro com sombra 13;
 
-fruta amaldiçoada envenenada gato
-    revela "O reino cairá em sono eterno...";
-    invoca espinhos_venenosos com treva77;
-preto
+fruta amaldicoada 7 envenenada
+gato preto
+revela "O reino caira em sono eterno..." ;
+invoca espinhos_venenosos com treva 77;
+muahaha!
 
-ritual 3 ciclos gato
-    revela "A magia cresce com cada batida de asa...";
-    invoca fogo_verde com treva99;
-preto
+ritual 3 ciclos
+gato preto
+revela "A magia cresce com cada batida de asa..." ;
+invoca fogo_verde com treva 99;
+muahaha!
 ```
 ---
