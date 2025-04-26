@@ -5,8 +5,6 @@
 void yyerror(const char *s);
 int yylex(void);
 
-#define YYDEBUG 1
-extern int yydebug;
 %}
 
 
@@ -81,7 +79,6 @@ void yyerror(const char *s) {
 }
 
 int main(void) {
-    yydebug = 1;
     return yyparse();
 }
 

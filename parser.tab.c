@@ -75,10 +75,8 @@
 void yyerror(const char *s);
 int yylex(void);
 
-#define YYDEBUG 1
-extern int yydebug;
 
-#line 82 "parser.tab.c"
+#line 80 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -522,8 +520,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    28,    32,    33,    34,    35,    39,    43,
-      47,    51,    55,    56,    57,    61,    65,    66,    70,    74
+       0,    25,    25,    26,    30,    31,    32,    33,    37,    41,
+      45,    49,    53,    54,    55,    59,    63,    64,    68,    72
 };
 #endif
 
@@ -1101,7 +1099,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1105 "parser.tab.c"
+#line 1103 "parser.tab.c"
 
       default: break;
     }
@@ -1294,7 +1292,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 77 "parser.y"
+#line 75 "parser.y"
 
 
 void yyerror(const char *s) {
@@ -1302,7 +1300,6 @@ void yyerror(const char *s) {
 }
 
 int main(void) {
-    yydebug = 1;
     return yyparse();
 }
 
