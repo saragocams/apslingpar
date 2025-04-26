@@ -53,7 +53,7 @@ qualquer_caractere ::= qualquer_símbolo_ou_letra_exceto_aspas ;
 | `fruta`     | Envenena uma fruta se uma condição energética for verdadeira              |
 | `ritual`    | Repetição mágica de encantamentos (loop)                                  |
 | `revela`    | Exibe mensagens ou verdades mágicas                                        |
-| `gato`/`preto` | Delimita um bloco mágico com ajuda de um gato preto                        |
+| `gato preto`/`muahaha!` | Delimita um bloco mágico com ajuda de um gato preto                        |
 
 ---
 

@@ -1,0 +1,13 @@
+invoca corvo_negro com sombra 13;
+
+fruta amaldicoada 7 envenenada
+gato preto
+revela "O reino caira em sono eterno..." ;
+invoca espinhos_venenosos com treva 77;
+muahaha!
+
+ritual 3 ciclos
+gato preto
+revela "A magia cresce com cada batida de asa..." ;
+invoca fogo_verde com treva 99;
+muahaha!
