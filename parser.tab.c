@@ -71,12 +71,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+FILE *saida;
 
 void yyerror(const char *s);
 int yylex(void);
 
-
-#line 80 "parser.tab.c"
+#line 82 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -107,9 +109,9 @@ enum yysymbol_kind_t
   YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
   YYSYMBOL_YYerror = 1,                    /* error  */
   YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-  YYSYMBOL_IDENTIFICADOR = 3,              /* IDENTIFICADOR  */
-  YYSYMBOL_FRASE = 4,                      /* FRASE  */
-  YYSYMBOL_NUMERO = 5,                     /* NUMERO  */
+  YYSYMBOL_NUMERO = 3,                     /* NUMERO  */
+  YYSYMBOL_IDENTIFICADOR = 4,              /* IDENTIFICADOR  */
+  YYSYMBOL_FRASE = 5,                      /* FRASE  */
   YYSYMBOL_INVOCA = 6,                     /* INVOCA  */
   YYSYMBOL_FRUTA = 7,                      /* FRUTA  */
   YYSYMBOL_RITUAL = 8,                     /* RITUAL  */
@@ -123,16 +125,18 @@ enum yysymbol_kind_t
   YYSYMBOL_PONTO_E_VIRGULA = 16,           /* PONTO_E_VIRGULA  */
   YYSYMBOL_YYACCEPT = 17,                  /* $accept  */
   YYSYMBOL_programa = 18,                  /* programa  */
-  YYSYMBOL_encantamento = 19,              /* encantamento  */
-  YYSYMBOL_invocacao = 20,                 /* invocacao  */
-  YYSYMBOL_condicional = 21,               /* condicional  */
-  YYSYMBOL_loop = 22,                      /* loop  */
-  YYSYMBOL_print = 23,                     /* print  */
-  YYSYMBOL_print_conteudo = 24,            /* print_conteudo  */
-  YYSYMBOL_bloco = 25,                     /* bloco  */
-  YYSYMBOL_encantamentos = 26,             /* encantamentos  */
-  YYSYMBOL_energia = 27,                   /* energia  */
-  YYSYMBOL_ser = 28                        /* ser  */
+  YYSYMBOL_19_1 = 19,                      /* $@1  */
+  YYSYMBOL_encantamentos = 20,             /* encantamentos  */
+  YYSYMBOL_encantamento = 21,              /* encantamento  */
+  YYSYMBOL_invocacao = 22,                 /* invocacao  */
+  YYSYMBOL_condicional = 23,               /* condicional  */
+  YYSYMBOL_24_2 = 24,                      /* $@2  */
+  YYSYMBOL_loop = 25,                      /* loop  */
+  YYSYMBOL_26_3 = 26,                      /* $@3  */
+  YYSYMBOL_impressao = 27,                 /* impressao  */
+  YYSYMBOL_print_conteudo = 28,            /* print_conteudo  */
+  YYSYMBOL_bloco = 29,                     /* bloco  */
+  YYSYMBOL_energia = 30                    /* energia  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -458,18 +462,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  2
+#define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   29
+#define YYLAST   37
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  17
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  12
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  19
+#define YYNRULES  20
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  35
+#define YYNSTATES  37
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   271
@@ -520,8 +524,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    25,    25,    26,    30,    31,    32,    33,    37,    41,
-      45,    49,    53,    54,    55,    59,    63,    64,    68,    72
+       0,    28,    28,    28,    39,    41,    45,    46,    47,    48,
+      52,    60,    59,    68,    67,    76,    80,    81,    82,    86,
+      93
 };
 #endif
 
@@ -537,12 +542,12 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "IDENTIFICADOR",
-  "FRASE", "NUMERO", "INVOCA", "FRUTA", "RITUAL", "REVELA", "GATO",
+  "\"end of file\"", "error", "\"invalid token\"", "NUMERO",
+  "IDENTIFICADOR", "FRASE", "INVOCA", "FRUTA", "RITUAL", "REVELA", "GATO",
   "PRETO", "MUAHAHA", "COM", "ENVENENADA", "CICLOS", "PONTO_E_VIRGULA",
-  "$accept", "programa", "encantamento", "invocacao", "condicional",
-  "loop", "print", "print_conteudo", "bloco", "encantamentos", "energia",
-  "ser", YY_NULLPTR
+  "$accept", "programa", "$@1", "encantamentos", "encantamento",
+  "invocacao", "condicional", "$@2", "loop", "$@3", "impressao",
+  "print_conteudo", "bloco", "energia", YY_NULLPTR
 };
 
 static const char *
@@ -552,7 +557,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-11)
+#define YYPACT_NINF (-17)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -566,10 +571,10 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -11,     0,   -11,    -1,    -1,     9,    14,   -11,   -11,   -11,
-     -11,   -11,   -11,   -10,    -9,    10,     5,   -11,   -11,     6,
-     -11,    -1,    11,   -11,    11,   -11,     7,    13,   -11,   -11,
-     -11,   -11,     4,   -11,   -11
+     -17,     4,   -17,   -17,     1,    10,    11,     2,     8,   -17,
+     -17,   -17,   -17,   -17,     3,    14,     5,     6,   -17,   -17,
+     -17,     7,    11,   -17,   -17,   -17,   -17,     9,    12,    12,
+     -17,    13,   -17,   -17,   -17,    -6,   -17
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -577,24 +582,24 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,     1,     0,     0,     0,     0,     3,     4,     5,
-       6,     7,    19,     0,     0,     0,     0,    14,    13,     0,
-      12,     0,     0,    18,     0,    11,     0,     0,     9,    10,
-       8,    16,     0,    15,    17
+       2,     0,     4,     1,     3,     0,     0,     0,     0,     5,
+       6,     7,     8,     9,     0,     0,     0,     0,    17,    16,
+      18,     0,     0,    20,    11,    13,    15,     0,     0,     0,
+      10,     0,    12,    14,     4,     0,    19
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -11,   -11,    -7,   -11,   -11,   -11,   -11,   -11,     2,   -11,
-       8,    -2
+     -17,   -17,   -17,   -16,   -17,   -17,   -17,   -17,   -17,   -17,
+     -17,   -17,    -9,    15
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     1,     7,     8,     9,    10,    11,    19,    28,    32,
-      14,    15
+       0,     1,     2,     4,     9,    10,    11,    28,    12,    29,
+      13,    21,    32,    16
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -602,40 +607,44 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       2,    13,    12,    21,    20,    22,     3,     4,     5,     6,
-       3,     4,     5,     6,    16,    23,    33,    12,    17,    18,
-      24,    27,    25,    30,    31,    34,    29,     0,     0,    26
+       5,     6,     7,     8,     3,    17,    36,     5,     6,     7,
+       8,    18,    19,    20,    14,    15,    22,    23,    35,    24,
+      33,    25,    31,    26,    34,    30,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    27
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,     3,     3,    13,     6,    14,     6,     7,     8,     9,
-       6,     7,     8,     9,     5,     5,    12,     3,     4,     5,
-      15,    10,    16,    16,    11,    32,    24,    -1,    -1,    21
+       6,     7,     8,     9,     0,     3,    12,     6,     7,     8,
+       9,     3,     4,     5,     4,     4,    13,     3,    34,    14,
+      29,    15,    10,    16,    11,    16,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    22
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    18,     0,     6,     7,     8,     9,    19,    20,    21,
-      22,    23,     3,    28,    27,    28,     5,     4,     5,    24,
-      28,    13,    14,     5,    15,    16,    27,    10,    25,    25,
-      16,    11,    26,    12,    19
+       0,    18,    19,     0,    20,     6,     7,     8,     9,    21,
+      22,    23,    25,    27,     4,     4,    30,     3,     3,     4,
+       5,    28,    13,     3,    14,    15,    16,    30,    24,    26,
+      16,    10,    29,    29,    11,    20,    12
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    17,    18,    18,    19,    19,    19,    19,    20,    21,
-      22,    23,    24,    24,    24,    25,    26,    26,    27,    28
+       0,    17,    19,    18,    20,    20,    21,    21,    21,    21,
+      22,    24,    23,    26,    25,    27,    28,    28,    28,    29,
+      30
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     2,     1,     1,     1,     1,     5,     4,
-       4,     3,     1,     1,     1,     4,     0,     2,     2,     1
+       0,     2,     0,     2,     0,     2,     1,     1,     1,     1,
+       5,     0,     5,     0,     5,     3,     1,     1,     1,     4,
+       2
 };
 
 
@@ -1098,8 +1107,84 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* $@1: %empty  */
+#line 28 "parser.y"
+    {
+        saida = fopen("SaidaGerada.java", "w");
+        fprintf(saida, "public class SaidaGerada {\n  public static void main(String[] args) {\n");
+    }
+#line 1117 "parser.tab.c"
+    break;
 
-#line 1103 "parser.tab.c"
+  case 3: /* programa: $@1 encantamentos  */
+#line 33 "parser.y"
+    {
+        fprintf(saida, "  }\n}\n");
+        fclose(saida);
+    }
+#line 1126 "parser.tab.c"
+    break;
+
+  case 10: /* invocacao: INVOCA IDENTIFICADOR COM energia PONTO_E_VIRGULA  */
+#line 53 "parser.y"
+    {
+        fprintf(saida, "System.out.println(\"Invocando %s com poder %d\");\n", (yyvsp[-3].str), (yyvsp[-1].numero));
+    }
+#line 1134 "parser.tab.c"
+    break;
+
+  case 11: /* $@2: %empty  */
+#line 60 "parser.y"
+    {
+        fprintf(saida, "if (%d > 10) {\n", (yyvsp[-1].numero));
+    }
+#line 1142 "parser.tab.c"
+    break;
+
+  case 13: /* $@3: %empty  */
+#line 68 "parser.y"
+    {
+        fprintf(saida, "for (int i = 0; i < %d; i++) {\n", (yyvsp[-1].numero));
+    }
+#line 1150 "parser.tab.c"
+    break;
+
+  case 16: /* print_conteudo: IDENTIFICADOR  */
+#line 80 "parser.y"
+                  { fprintf(saida, "System.out.println(\"%s\");\n", (yyvsp[0].str)); }
+#line 1156 "parser.tab.c"
+    break;
+
+  case 17: /* print_conteudo: NUMERO  */
+#line 81 "parser.y"
+                  { fprintf(saida, "System.out.println(%d);\n", (yyvsp[0].numero)); }
+#line 1162 "parser.tab.c"
+    break;
+
+  case 18: /* print_conteudo: FRASE  */
+#line 82 "parser.y"
+                  { fprintf(saida, "System.out.println(%s);\n", (yyvsp[0].str)); }
+#line 1168 "parser.tab.c"
+    break;
+
+  case 19: /* bloco: GATO PRETO encantamentos MUAHAHA  */
+#line 87 "parser.y"
+    {
+        fprintf(saida, "}\n");
+    }
+#line 1176 "parser.tab.c"
+    break;
+
+  case 20: /* energia: IDENTIFICADOR NUMERO  */
+#line 94 "parser.y"
+    {
+        (yyval.numero) = (yyvsp[0].numero);
+    }
+#line 1184 "parser.tab.c"
+    break;
+
+
+#line 1188 "parser.tab.c"
 
       default: break;
     }
@@ -1292,7 +1377,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 75 "parser.y"
+#line 99 "parser.y"
 
 
 void yyerror(const char *s) {
@@ -1302,4 +1387,3 @@ void yyerror(const char *s) {
 int main(void) {
     return yyparse();
 }
-

@@ -1,76 +1,100 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+FILE *saida;
 
 void yyerror(const char *s);
 int yylex(void);
-
 %}
 
-
 %union {
+    char* str;
     int numero;
-    char *str;
 }
 
+%token <numero> NUMERO
 %token <str> IDENTIFICADOR
 %token <str> FRASE
-%token <numero> NUMERO
 
 %token INVOCA FRUTA RITUAL REVELA GATO PRETO MUAHAHA COM ENVENENADA CICLOS PONTO_E_VIRGULA
 
+%type <numero> energia
+
 %%
 
-programa
-    : /* vazio */
-    | programa encantamento
-    ;
+programa:
+    {
+        saida = fopen("SaidaGerada.java", "w");
+        fprintf(saida, "public class SaidaGerada {\n  public static void main(String[] args) {\n");
+    }
+    encantamentos
+    {
+        fprintf(saida, "  }\n}\n");
+        fclose(saida);
+    }
+;
 
-encantamento
-    : invocacao
+encantamentos:
+    /* vazio */
+    | encantamentos encantamento
+;
+
+encantamento:
+    invocacao
     | condicional
     | loop
-    | print
-    ;
+    | impressao
+;
 
-invocacao
-    : INVOCA ser COM energia PONTO_E_VIRGULA
-    ;
+invocacao:
+    INVOCA IDENTIFICADOR COM energia PONTO_E_VIRGULA
+    {
+        fprintf(saida, "System.out.println(\"Invocando %s com poder %d\");\n", $2, $4);
+    }
+;
 
-condicional
-    : FRUTA energia ENVENENADA bloco
-    ;
+condicional:
+    FRUTA energia ENVENENADA
+    {
+        fprintf(saida, "if (%d > 10) {\n", $2);
+    }
+    bloco
+;
 
-loop
-    : RITUAL NUMERO CICLOS bloco
-    ;
+loop:
+    RITUAL NUMERO CICLOS
+    {
+        fprintf(saida, "for (int i = 0; i < %d; i++) {\n", $2);
+    }
+    bloco
+;
 
-print
-    : REVELA print_conteudo PONTO_E_VIRGULA
-    ;
 
-print_conteudo
-    : ser
-    | NUMERO
-    | FRASE
-    ;
+impressao:
+    REVELA print_conteudo PONTO_E_VIRGULA
+;
 
-bloco
-    : GATO PRETO encantamentos MUAHAHA
-    ;
+print_conteudo:
+    IDENTIFICADOR { fprintf(saida, "System.out.println(\"%s\");\n", $1); }
+    | NUMERO      { fprintf(saida, "System.out.println(%d);\n", $1); }
+    | FRASE       { fprintf(saida, "System.out.println(%s);\n", $1); }
+;
 
-encantamentos
-    : /* vazio */
-    | encantamentos encantamento
-    ;
+bloco:
+    GATO PRETO encantamentos MUAHAHA
+    {
+        fprintf(saida, "}\n");
+    }
+;
 
-energia
-    : ser NUMERO
-    ;
-
-ser
-    : IDENTIFICADOR
-    ;
+energia:
+    IDENTIFICADOR NUMERO
+    {
+        $$ = $2;
+    }
+;
 
 %%
 
@@ -81,4 +105,3 @@ void yyerror(const char *s) {
 int main(void) {
     return yyparse();
 }
-

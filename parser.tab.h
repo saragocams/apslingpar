@@ -54,9 +54,9 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    IDENTIFICADOR = 258,           /* IDENTIFICADOR  */
-    FRASE = 259,                   /* FRASE  */
-    NUMERO = 260,                  /* NUMERO  */
+    NUMERO = 258,                  /* NUMERO  */
+    IDENTIFICADOR = 259,           /* IDENTIFICADOR  */
+    FRASE = 260,                   /* FRASE  */
     INVOCA = 261,                  /* INVOCA  */
     FRUTA = 262,                   /* FRUTA  */
     RITUAL = 263,                  /* RITUAL  */
@@ -76,10 +76,10 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "parser.y"
+#line 12 "parser.y"
 
+    char* str;
     int numero;
-    char *str;
 
 #line 85 "parser.tab.h"
 
