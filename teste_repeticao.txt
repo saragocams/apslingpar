@@ -1,0 +1,4 @@
+ritual 1 ciclos
+gato preto
+revela "O ciclo começou com um sussurro..." ;
+muahaha!
